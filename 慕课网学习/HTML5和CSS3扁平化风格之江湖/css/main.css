@@ -1,0 +1,198 @@
+*{margin: 0;padding: 0;}
+
+.main-wrapper{background: #444 url(../images/相忘于江湖.jpeg);
+    background-attachment: fixed;background-repeat: no-repeat;
+    background-size: cover;background-position: center center;}
+
+header{background: rgba(0,0,0,0.4);}
+
+nav{background: transparent;height: 50px;}
+
+nav ul{list-style: none;margin: 0;float: right;border-bottom: 2px solid #F60;}
+
+nav ul li{line-height: 50px;margin-right:20px;}
+
+nav ul li a{line-height: inherit;text-decoration: none;color: rgb(17,63,61);
+    display: inline-block;height: inherit;}
+
+nav ul li{float: left;}
+
+.logo{font-size: 33px;font-weight: 500;letter-spacing: 8px;
+    display: inline-block;line-height: inherit;padding: 20px;}
+
+.logo a{color: rgb(131,175,155);text-decoration: none;transition: width 2s linear;}
+
+a:hover{color: #fff;background-color: rgba(229,187,129,0.6);margin-top: -10px;width: 160px;}
+
+#banner{background: transparent;height: 750px;}
+
+#banner .inner{max-width: 1920px;text-align: center;margin: 0 auto;
+    position:relative;top: 240px;}
+
+#banner button{padding: 20px 60px;}
+
+button{border: none;background: #333;color: rgb(213,26,33);padding: 15px 40px;border-radius: 50px;margin-top: 30px;font-family:Arial;}
+
+#banner .inner .more{margin-top: 170px;font-size: 15px;}
+
+.context{line-height: 40px;letter-spacing:4px;color: rgb(178,200,18);}
+
+.green-section{text-align: center;background: #089DB0;color: #fff;
+    padding: 100px 0;}
+
+.wrapper{max-width: 1920px;margin: 0 auto;}
+
+.hr{width:100%;height: 2px;margin: 20px auto;}
+
+.green-section .hr{background: #078494;width: 50%;margin-top: 1px;}
+
+.wrapper .sub-heading{font-size: 25px;}
+
+h1{padding: 30px;border:2px solid rgba(36,33,28,0.6);}
+
+h2{font-size: 40px;font-family:Lobster;color: rgba(252,157,154,0.7);}
+
+h3{font-size: 22px;font-family: Georgia;color: rgb(28,120,135);}
+
+p{font-size: 18px;letter-spacing:8px;color: rgb(201,186,131);}
+
+.icon-group{
+    margin-top: 60px;
+}
+
+.green-section .icon-group .icon{
+    display: inline-block;width: 80px;height: 80px;
+    margin: 20px;transition:0.3s ease-out;
+}
+.button{display:block;
+        width:180px;
+        height:50px;
+        border:1px solid rgba(255,0,0,0.7);
+        line-height:50px;
+        padding-left:20px;
+        margin:0 auto;
+        font-weight:bold;
+        text-decoration:none;
+        font-family:Arial;
+        color:#2DCB70;
+        box-sizing: border-box;
+        transition: 0.4s linear;
+        text-transform:uppercase;
+        position:relative;
+      }
+
+.button:hover{border: 2px solid rgba(255,255,0,1);
+               background-position:140px center;    
+      }
+
+.button .line{position: absolute;
+              background: none;
+              transition: 0.4s ease;}
+
+.button:hover .line{background: rgba(200,200,169,0.3);}
+
+.button .line-top{height: 2px;width: 0px;left: -110%;top:-2px;}
+
+.button:hover .line-top{width: 100%;left: -2px;} 
+
+.button .line-right{width: 2px;height: 0px;top:-110%;right:-2px;}
+
+.button:hover .line-right{height: 100%;top: -2px;}
+
+.button .line-bottom{height: 2px;width: 0px;right: -100%;bottom: -2px;}
+
+.button:hover .line-bottom{width: 100%;right: -2px;}
+
+.button .line-left{width: 2px;height: 0px;bottom:-110%;left:-2px;}
+
+.button:hover .line-left{height: 100%;bottom: -2px;}
+
+.green-section .icon-group .icon:hover{transform: rotate(360deg) scale(1.4);}
+
+
+
+.gray-section{background-image: linear-gradient(to top left,#252F34,#543);color:#FFF;text-align: center;}
+
+.gray-section .img-section{width: 45%;}
+
+.img-section img{width: 100%;}
+
+.gray-section .text-section{width: 55%;}
+
+.article-preview > div{float: left;font-size: 0;}
+
+.article-preview:nth-child(odd){background:rgba(255,255,255,0.03);}
+
+.article-preview:after{content:"";display: block;clear: both;}
+
+.text-section{position: relative;top: 68px;left: 50px;}
+
+.text-section h2{margin-bottom: 10px;float:left;}
+
+.text-section .sub-heading{font-size:22px;padding: 10px;margin-top: 20px;color:rgb(200,200,169);}
+
+.text-section p{padding: 20px;letter-spacing: 1px;
+    font-size: 18x;font-family: Georgia;}
+
+.text-section > *{max-width:90%;}
+
+
+.purple-section{background: rgb(207,191,140);color: #FFF;padding: 100px;}
+
+.purple-section .heading-wrapper{text-align: center;}
+
+.purple-section .sub-heading{color: rgb(155,144,194);}
+
+.heading-wrapper .hr{background: rgba(20,0,28,0.5);height: 1px;margin: 1px auto;max-width: 17%;}
+
+.card{width: 50%;height:30%;min-height: 10px;padding: 50px;box-sizing: border-box;float: left;}
+
+.card p{display:inline-block;padding: 50px;letter-spacing:1px;font-size: 15px;color: #CD7F32;}
+
+.card-group:after{content:"";display: block;clear: both;}
+
+.card:first-child{background: rgba(0,0,0,0.04);}
+.card:nth-child(2){background: rgba(0,0,0,0.08);}
+.card:nth-child(3){background: rgba(0,0,0,0.12);}
+.card:nth-child(4){background: rgba(0,0,0,0.16);}
+.card:nth-child(5){background: rgba(0,0,0,0.20);}
+.card:nth-child(6){background: rgba(0,0,0,0.24);}
+
+
+.opacity-section{margin-right: 90px;}
+
+.box{position: relative;height:70px;width:100px;background-image: url(../images/神雕侠侣.jpg);}
+
+.opacity-section .article-preview{margin: 60px;}
+
+.poem h3{font-size: 40px;}
+
+.poem p{color: #5C4033;font-weight: bold;font-size: 24px;font-family:"微软雅黑";
+                margin-top: 20px;line-height: 20px;padding: 10px;letter-spacing:4px;}
+
+.article-preview > div{float: right;font-size: 0;}
+
+
+footer{
+    background: rgba(3,22,52,0.9);
+    color: #fff;
+    min-height: 200px;
+    text-align: center;
+}
+
+ul.share-group{
+    display: block;
+    width: 1080px;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+.share-group li{
+    display: inline-block;
+    padding: 10px;
+}
+
+.copy{padding-bottom: 20px;}
+
+
+.card-group{width: 1300px;height: 900px;}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type"content="text/html;charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" contnt="IE=edge"/>
+		<title>taobao demo</title>
+		<link rel="stylesheet" href="css/taobao.css" />
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+        <script src="js/bing-search.js"></script>
+
+	</head>
+
+	<body>
+		<div class="search-container">
+			<div class="search-list"></div>
+			<div class="search-pannel">
+				<form id="search_form">
+				<div class="search-tips">
+					<a href="#">
+						高级<br/>搜索
+					</a>
+				</div>
+					<div class="search-button">
+						<button class="btn-search" type="submit"></button>
+					</div>
+					
+					<input type="text" class="search-input-text" name="q"id="search_input"autocomplete="off"/>
+					<!--<input type="submit" class="search-input-button" value="" />-->
+				</form>
+			</div>
+						 
+		</div>
+		<div class="suggest" id="search_suggest"style="display:none">
+			<ul id="search_result">
+				<li>搜索结果1</li>
+				<li>搜索结果2</li>
+				<li>搜索结果3</li>
+				<li>搜索结果4</li>
+				<li>搜索结果5</li>
+			</ul>
+			
+		</div>
+	</body>
+
+</html>

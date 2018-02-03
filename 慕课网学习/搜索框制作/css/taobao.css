@@ -1,0 +1,15 @@
+body{
+	font:2px/1.5 tahoma,arial,sans-serif;
+}
+a{
+	text-decoration:none;
+}
+.search-tips{
+	float:right;
+}
+.search-tips a{
+	color:#6c6c6c;
+}
+.search-button{
+	float:right;
+}
