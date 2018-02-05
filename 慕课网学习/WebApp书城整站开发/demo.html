@@ -287,7 +287,7 @@
 
 			</div>
 			<div id="fiction_container" class="m-read-content">
-				<h4>上部 第一章</h4>
+				<!--<h4>上部 第一章</h4>
 				<p>
 					正是盛夏时节，不比初春时的一片新绿，知道好日子才开始，所以明亮快活，眼前的绿是沉甸甸的，许是因为知道绚烂已到了顶，以后的日子只有每况愈下。一如我此时的心情。已是在古代的第十个日子，可我还是觉得这是一场梦，只等我醒来就仍然有一堆的财务报告等着自己，而不是在康熙四十三年；仍然是芳龄25的单身白领，而不是这个还未满十四岁的满族少女。
 				</p>
@@ -295,7 +295,7 @@
 				<p>“二小姐，我们回去吧，虽说已经过了正午，可这会的地热气才最毒，您身体还没完全好呢！”姐姐的陪嫁丫鬟巧慧在旁劝道。“好！姐姐的经也该念完了。”我转身应道。</p>
 				<p>我现在的名字是马而泰.若曦。而这个白得的姐姐叫马而泰.若兰，是清朝历史上颇有点名气的廉亲王八阿哥允禩的侧福晋，不过现在八阿哥还未封王只是个多罗贝勒，而且也未需避讳雍正的名字而改名，所以应该叫胤禩。</p>
 				<p>姐姐的性格说好听了是温婉贤淑，说难听了是懦弱不争，一天的时间里总是要花半天念经。我猜恐怕是不受宠，至少我在这里的十天，从未听到八阿哥来。不过从这十天来看，她对这个妹妹却是极好的，从饮食到衣着，事无巨细，唯恐我不舒服。我心里叹了口气，如果我不能回去，那我在这个时空也只有她可以依靠了。可想着未来八阿哥的下场，又觉得这个依靠也绝对是靠不住的。不过那毕竟是很多年后的事情，现在也顾不上。</p>
-				<p>回到屋中时，姐姐果然已经在了。正坐在桌旁吃点心，见我进屋，她带点嗔怪地说：“也不怕热气打了头。”我上前侧坐在她身旁笑说，“哪就有那么矜贵呢？再说，我这么出去转了转，反倒觉得身体没有前几天那么重了。”她看了看我的脸色说：“看上去气色是好了一些，不过现在天气正毒着，可别在这个时候再出去了。”我随口应了一声“知道了。”</p>
+				<p>回到屋中时，姐姐果然已经在了。正坐在桌旁吃点心，见我进屋，她带点嗔怪地说：“也不怕热气打了头。”我上前侧坐在她身旁笑说，“哪就有那么矜贵呢？再说，我这么出去转了转，反倒觉得身体没有前几天那么重了。”她看了看我的脸色说：“看上去气色是好了一些，不过现在天气正毒着，可别在这个时候再出去了。”我随口应了一声“知道了。”</p>-->
 			</div>
 			<div class="m-button-bar">
 				<ul class="u-tab">
@@ -398,6 +398,9 @@
                 var Win=$(window);
                 var Doc=$(document);
                 
+                
+                var readerModel;
+                var readerUI;
                 var FictionContainer=$('#fiction_container')
                 var initFontSize=Util.StorageGetter('font_size');
                 initFontSize=parseInt(initFontSize);
@@ -408,29 +411,38 @@
                 
 				function main() {
 					//todo 整个项目的入口函数
-					var readerModel=ReaderModel();
-					readerModel.init();
+					readerModel=ReaderModel();
+					readerUI=ReaderBaseFrame(FictionContainer);
+					readerModel.init(function(data){
+						 readerUI(data);
+					});
 					EventHanlder();
 				}
 
 				function ReaderModel() {
 					//todo 实现和阅读器相关的数据交互的方法
 					var Chapter_id;
-					var init=function(){
+					var ChapterTotal;
+					var init=function(UIcallback){
 						getFictionInfo(function(){
-							getCurChapterContent(Chapter_id,function(){
+							getCurChapterContent(Chapter_id,function(data){
 								//TODO
+								UIcallback && UIcallback(data);
 							});
 						})
 					}
 					var getFictionInfo=function(callback){
 						$.get('data/chapter.json',function(data){
 							//TODO 获得章节信息之后的回调
+							Chapter_id=Util.StorageGetter('last_chapter_id');
+							if(Chapter_id==null){
 							Chapter_id=data.chapters[1].chapter_id;
+							}
+							ChapterTotal=data.chapters.length;
 							callback&&callback();
 						},'json');
 					}
-					var getCurChapterContent=function(chapter_id,data){
+					var getCurChapterContent=function(chapter_id,callback){
 						$.get('data/data'+chapter_id+'.json',function(data){
 							if(data.result==0){
 								var url=data.jsonp;
@@ -441,14 +453,46 @@
 							}
 						},'json')
 					}
+					//获得上一章内容
+					var prevChapter=function(UIcallback){
+						Chapter_id=parseInt(Chapter_id,10);
+						if(Chapter_id==1){
+							return;
+						}
+						 Chapter_id-=1;
+						getCurChapterContent(Chapter_id,UIcallback);
+						Util.StorageSetter('last_chapter_id',Chapter_id);
+					}
+					//获得下一章内容
+					var nextChapter=function(UIcallback){
+						Chapter_id=parseInt(Chapter_id,10);
+						if(Chapter_id==ChapterTotal){
+							return;
+						}
+					    Chapter_id+=1;
+						getCurChapterContent(Chapter_id,UIcallback);
+						Util.StorageSetter('last_chapter_id',Chapter_id);
+					}
 					return{
 						init:init,
+						prevChapter:prevChapter,
+						nextChapter:nextChapter,
 					}
 				}
 
-				function ReaderBaseFrame() {
+				function ReaderBaseFrame(container) {
 					//todo 渲染基本的UI结构
-					
+					function parseChapterData(jsonData){
+						var jsonObj=JSON.parse(jsonData);
+						var html='<h4>'+jsonObj.t+'</h4>';
+						for(var i=0;i<jsonObj.p.length;i++){
+							html+='<p>'+jsonObj.p[i]+'</p>';
+						}
+						return html;
+					}
+					return function(data){
+						container.html(parseChapterData(data));
+					}
 				}
 
 				function EventHanlder() {
@@ -505,6 +549,18 @@
 						Dom.top_nav.hide();
 						Dom.font_container.hide();
 						Dom.font_button.removeClass('current');
+					});
+					
+					$('#prev_button').click(function(){
+						//TODO 获得章节的翻页数据->把数据拿出来渲染
+						readerModel.prevChapter(function(data){
+							readerUI(data);
+						});
+					});
+					$('#next_button').click(function(){
+						readerModel.nextChapter(function(data){
+							readerUI(data);
+						});		 
 					});
 				}
 
